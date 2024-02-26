@@ -16,6 +16,41 @@
   Once you've implemented the logic, test your code by running
 */
 
-class Calculator {}
+class Calculator {
+  constructor() {
+    this.result = 0; //refers to the result property of the current instance of the Calculator object
+  }
+
+  add(num) {
+    this.result = num + this.result;
+  }
+  subtract(num) {
+    this.result = this.result - num;
+  }
+  multiply(num) {
+    this.result = this.result * num;
+  }
+  divide(num) {
+    if (num === 0) {
+      throw new Error();
+    }
+    this.result = this.result / num;
+  }
+  clear() {
+    this.result = 0;
+  }
+  getResult() {
+    return this.result;
+  }
+
+  calculate(expression) {
+    let removeSpaces = expression.replace(/\s+/g, "");
+    let evaluate = eval(removeSpaces);
+    if (isNaN(evaluate)) {
+      throw new Error("invalid expression");
+    }
+    this.result = evaluate;
+  }
+}
 
 module.exports = Calculator;
